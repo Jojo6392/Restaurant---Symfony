@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('assets/icon-jp.png') }}" />
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
+    </head>
+    <style>
+        body { margin: 0px;}
+    </style>
+    <body>
+        {% block navbar %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #272727 !important">
+            <div class="container-fluid">
+            <a href="{{ path('index') }}"><img class="icon-accueil" src="{{ asset('assets/alan.gif') }}" /><span class="title title-navbar">JGR</span></a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if app.user %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle navbar-text" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Profil
+                            </a>
+                            <ul class="dropdown-menu" style="width: 200px;" aria-labelledby="navbarDropdown">
+                                <li class="nav-item"><a class="nav-link navbar-text" href="{{ path('user_index', {'id': app.user.id}) }}">Voir</a></li>
+                                <li class="nav-item"><a class="nav-link navbar-text" href="{{ path('user_edit', {'id': app.user.id}) }}">Modifier</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle navbar-text" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Commandes
+                            </a>
+                            <ul class="dropdown-menu" style="width: 200px;" aria-labelledby="navbarDropdown">
+                                <li class="nav-item"><a class="nav-link navbar-text" href="{{ path('commande_index', {'id': app.user.id}) }}">Mes Commandes</a></li>
+                                <li class="nav-item"><a class="nav-link navbar-text" href="{{ path('commande_new', {'id': app.user.id}) }}">Nouvelle Commande</a></li>
+                            </ul>
+                        </li>
+                         {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle navbar-text" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Restaurants
+                            </a>
+                            <ul class="dropdown-menu" style="width: 200px;" aria-labelledby="navbarDropdown">
+                                <li class="nav-item"><a class="nav-link navbar-text" href="{{ path('restaurant_index') }}">Voir</a></li>
+                                <li class="nav-item"><a class="nav-link navbar-text" href="{{ path('restaurant_new') }}">Nouveau Restaurant</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                        
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle navbar-text" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Utilisateurs
+                            </a>
+                            <ul class="dropdown-menu" style="width: 200px;" aria-labelledby="navbarDropdown">
+                                <li class="nav-item"><a class="nav-link navbar-text" href="{{ path('user_index', {'id': app.user.id}) }}">Voir mon profil</a></li>
+                                <li class="nav-item"><a class="nav-link navbar-text" href="{{ path('user_all') }}">Tous les profils</a></li>
+                                <li class="nav-item"><a class="nav-link navbar-text" href="{{ path('app_register') }}">Créer</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                    {% else %}
+                    <nav class="navbar navbar-expand-lg ">
+                        <div class="container-fluid">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item m-2"><a href="{{ path('login') }}">Se connecter</a></li>
+                                <li class="nav-item m-2"><a href="{{ path('app_register') }}">S'inscrire</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    {% endif %}
+                    {% if app.user != null %}
+                        <li class="nav-item">
+                            <a class="navbar-logout" href="{{ path('app_logout') }}">Se déconnecter</a>
+                        </li>
+                    {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% endblock %}
+        {% block body %}
+        {% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>

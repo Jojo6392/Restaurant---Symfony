@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier - Commande{% endblock %}
+
+{% block body %}
+<div class="center">
+    <h1>Modifier votre commande</h1>
+
+    {{ include('commande/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    {{ include('commande/_delete_form.html.twig') }}
+
+    <div class="lien"><a href="{{ path('commande_index', {'id': app.user.id}) }}">Retour à vos commandes</a></div>
+</div>
+{% endblock %}

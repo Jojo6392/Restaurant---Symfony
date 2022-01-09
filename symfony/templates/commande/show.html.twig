@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Commande{% endblock %}
+
+{% block body %}
+<div class="center">
+    <h1>Commande n°{{ commande.numero }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ commande.numero }}</td>
+            </tr>
+            <tr>
+                <th>Prix total</th>
+                <td>{{ commande.prix }} €</td>
+            </tr>
+            <tr>
+                <th>Lignes</th>
+                <td>
+                    <ul>{% for ligne in commande.lignesDeCommandes %}
+                        <li>
+                            {{ ligne.quantite }}x {{ ligne.produit.nom}}
+                            <a href="{{ path('ligne_de_commande_show', {'id': ligne.id}) }}">Voir</a> |
+                            <a href="{{ path('ligne_de_commande_edit', {'id': ligne.id}) }}">Modifier</a>
+                        </li>
+                        {% else %}
+                        <li>Pas de ligne trouvée.</li>
+                    {% endfor %}</ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="buttons">
+        <div class="lien"><a href="{{ path('ligne_de_commande_new' , {'id': commande.id}) }}">Créer une ligne pour cette commande</a></div>
+        <div class="lien"><a href="{{ path('commande_index', {'id': app.user.id}) }}">Retour à vos commandes</a></div>
+        <div class="lien"><a href="{{ path('commande_edit', {'id': commande.id}) }}">Modifier la commande</a></div>
+    </div>
+    {{ include('commande/_delete_form.html.twig') }}
+<div class="center">
+{% endblock %}

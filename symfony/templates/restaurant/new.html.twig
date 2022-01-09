@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Restaurant{% endblock %}
+
+{% block body %}
+<style>
+    input {
+        margin: 10px;
+    }
+</style>
+<div class="center">
+    <h1>Créer un nouveau restaurant</h1>
+
+    {{ include('restaurant/_form.html.twig') }}
+
+    <a class="lien" href="{{ path('restaurant_index') }}">Voir tout les restaurants</a>
+</div>
+{% endblock %}

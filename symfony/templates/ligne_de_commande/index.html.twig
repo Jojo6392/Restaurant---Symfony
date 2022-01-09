@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LigneDeCommande index{% endblock %}
+
+{% block body %}
+    <h1>LigneDeCommande index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ligne_de_commande in ligne_de_commandes %}
+            <tr>
+                <td>{{ ligne_de_commande.id }}</td>
+                <td>{{ ligne_de_commande.quantite }}</td>
+                <td>
+                    <a href="{{ path('ligne_de_commande_show', {'id': ligne_de_commande.id}) }}">show</a>
+                    <a href="{{ path('ligne_de_commande_edit', {'id': ligne_de_commande.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ligne_de_commande_new') }}">Create new</a>
+{% endblock %}

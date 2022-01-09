@@ -1,0 +1,6 @@
+#index:
+    #path: /
+    #controller: App\Controller\LoginController::index
+app_logout:
+    path: /logout
+    methods: GET

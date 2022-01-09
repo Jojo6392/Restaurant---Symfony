@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer - Commande{% endblock %}
+
+{% block body %}
+<div class="center">
+    <h1>Créer une nouvelle commande</h1>
+    <h4>Veuillez choisir dans quel restaurant voulez-vous passer votre commande s'il-vous-plaît.</h4>
+    {{ include('commande/_form.html.twig') }}
+
+    <div class="lien"><a href="{{ path('commande_index', {'id': app.user.id}) }}">Retour à vos commandes</a></div>
+</div>
+{% endblock %}

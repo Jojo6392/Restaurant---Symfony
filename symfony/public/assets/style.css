@@ -1,0 +1,84 @@
+:root {
+    --primary-color-navbar: #29b47a;
+    --secondary-color-navbar: #1b583f;
+}
+
+body {
+    font-family: 'Comic Sans MS', Comic Sans, cursive;
+}
+
+.navbar-text {
+    color: var(--primary-color-navbar) !important;
+}
+
+.icon-accueil {
+    width: 75px;
+    border: 2px solid black;
+    border-radius: 0.2rem;
+    box-shadow: 3px 3px 5px #434342;
+}
+
+.navbar-logout {
+    vertical-align: -webkit-baseline-middle;
+    color: black;
+}
+
+.navbar-logout:hover {
+    color: var(--secondary-color-navbar);
+    vertical-align: -webkit-baseline-middle;
+}
+
+a {
+    text-decoration: auto;
+    color: var(--primary-color-navbar);
+}
+
+.title-navbar {
+    color: var(--secondary-color-navbar);
+    margin: 10px;
+    font-size: 32px;
+    vertical-align: -webkit-baseline-middle;
+    font-weight: 600;
+}
+
+.accueil-msg {
+    margin: 100px;
+}
+
+.center {
+    
+    margin: 0 auto;
+    width: 800px;
+    margin-top: 50px;
+}
+
+.lien {
+    border: 2px solid var(--secondary-color-navbar);
+    border-radius: 0.2rem;
+    background-color: var(--secondary-color-navbar);
+    width: fit-content;
+    padding: 5px;
+    margin: 5px;
+    vertical-align: -webkit-baseline-middle;
+}
+
+a:hover {
+    color: black;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.produit {
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 0.2rem;
+    box-shadow: 3px 3px 5px #434342;
+}
+
+.icons {
+    width: 18px;
+}

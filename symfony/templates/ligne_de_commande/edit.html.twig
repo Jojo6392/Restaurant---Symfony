@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier -  Ligne de commande{% endblock %}
+
+{% block body %}
+    <h1>Modifier - Ligne de commande</h1>
+
+    {{ include('ligne_de_commande/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+
+    {{ include('ligne_de_commande/_delete_form.html.twig') }}
+{% endblock %}

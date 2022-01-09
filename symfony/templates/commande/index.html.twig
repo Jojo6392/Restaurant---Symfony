@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos commandes{% endblock %}
+
+{% block body %}
+<div class="center" style="width: 1000px;">
+    <h1>Vos commandes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numéro de commande</th>
+                <th>Prix</th>
+                <th>Lignes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td><i>{{ commande.numero }}</i></td>
+                <td>{{ commande.prix }} €</td>
+                <td><ul>{% for ligne in commande.lignesDeCommandes %}
+                    <li>{{ ligne.quantite }}x {{ ligne.produit.nom }}</li>
+                {% endfor %}</ul></td>
+                <td>
+                    <div class="buttons">
+                        <a class="lien" href="{{ path('commande_show', {'id': commande.id}) }}">Voir</a>
+                        <a class="lien" href="{{ path('commande_edit', {'id': commande.id}) }}">Modifier</a>
+                        <a class="lien" href="{{ path('ligne_de_commande_new' , {'id': commande.id}) }}">Créer une ligne</a>
+                        {{ include('commande/_delete_form.html.twig') }}
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de commande trouvée.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="buttons">
+        <div class="lien"><a href="{{ path('commande_new', {'id': app.user.id}) }}">Créer une commande</a></div>
+        <div class="lien"><a href="{{ path('user_index', {'id': app.user.id}) }}">Retour au profil</a></div>
+    </div>
+</div>
+{% endblock %}

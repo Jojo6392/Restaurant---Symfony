@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer - LigneDeCommande{% endblock %}
+
+{% block body %}
+<style>
+    input {
+        margin: 10px;
+    }
+</style>
+<div class="center">
+    <h1>Créer une ligne pour la commande id {{ app.request.get('id') }}</h1>
+    <hr>
+    {{ include('ligne_de_commande/_form.html.twig') }}
+
+    <div class="lien"><a href="{{ path('commande_index', {'id': app.user.id}) }}">Liste de vos commandes</a></div>
+</div>
+{% endblock %}

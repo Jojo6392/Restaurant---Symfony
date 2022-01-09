@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block body %}
+<div class="">
+    <h1>Tous les utilisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Mail</th>
+                <th>Rôles</th>
+                <th>Mot de passe hashé</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Actions</th>
+                {# {% if is_granted('ROLE_ADMIN') and user.listeDeRestaurant.nom is defined %}
+                <th>Responsable</th>
+                {% endif %} #}
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.nom }}</td>
+                {# {% if is_granted('ROLE_ADMIN') and user.listeDeRestaurant.nom is defined %}
+                <td>{{ user.listeDeRestaurant.nom }}</td>
+                {% endif %} #}
+                <td>
+                    <a href="{{ path('user_index', {'id': user.id}) }}">Afficher</a> |
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a> |
+                    <a href="{{ path('user_delete_admin', {'id': user.id}) }}">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Pas d'utilisateur trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="buttons">
+        <div class="lien"><a href="{{ path('app_register') }}">Créer un utilisateur</a></div>
+        <div class="lien"><a href="{{ path('user_index', {'id': app.user.id}) }}">Retour au profil utilisateur</a></div>
+    </div>
+</div>
+{% endblock %}

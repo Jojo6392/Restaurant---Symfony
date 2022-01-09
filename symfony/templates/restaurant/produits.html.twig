@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits - Restaurant{% endblock %}
+
+{% block body %}
+<div class="center">
+    <h1>Liste des produits chez {{ restaurant.nom }}</h1>
+    {% for produit in restaurant.produits %}
+    <div class="produit">
+        <b>{{ produit.nom }}</b> - {{ produit.prix }} €
+        <br />
+        <i>Description</i> : {{ produit.description }}
+        <div class="buttons">
+            <a class="lien" href="{{ path('produit_show', {'id': produit.id}) }}">Afficher</a>
+            <a class="lien" href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier</a>
+        </div>
+    </div>
+    {% else %}
+        <tr>
+            <td colspan="5">Pas de produits trouvés</td>
+        </tr>
+    {% endfor %}
+
+    <div class="buttons">
+        <a class="lien" href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Retour au restaurant</a>
+        <a class="lien" href="{{ path('restaurant_index') }}">Retour à liste des restaurants</a>
+        <a class="lien" href="{{ path('produit_new', {'id': restaurant.id}) }}">Créer un produit dans ce restaurant</a>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Produit{% endblock %}
+
+{% block body %}
+<style>
+    input {
+        margin: 10px;
+    }
+</style>
+<div class="center">
+    <h1>Créer un produit</h1>
+    <h4>Le produit sera créé dans le restaurant avec l'id {{ app.request.get('id') }}</h4>
+    {{ include('produit/_form.html.twig') }}
+
+    <div class="buttons">
+        <a class="lien" href="{{ path('produit_index') }}">Liste de tous les produits</a>
+        <a class="lien" href="{{ path('restaurant_produits', {'id': app.request.get('id')}) }}">Liste des produits du restaurant</a>
+        <a class="lien" href="{{ path('user_index', {'id': app.user.id}) }}">Retour au profil utilisateur</a>
+    </div>
+</div>
+{% endblock %}

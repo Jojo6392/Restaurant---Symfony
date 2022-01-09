@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page client{% endblock %}
+
+{% block body %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<div class="center">
+    <h1>Bonjour, {{ user.prenom }} {{ user.nom }} !</h1>
+    <h4>Tableau de vos informations</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mot de passe hashé</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            {% if is_granted('ROLE_ADMIN') and user.listeDeRestaurant.nom is defined %}
+            <tr>
+                <th>Responsable du restaurant</th>
+                <td><a href="{{ path('restaurant_show', {'id': user.listeDeRestaurant.id}) }}">{{user.listeDeRestaurant.nom}}</a></td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <div class="buttons">
+        <div class="lien"><a href="{{ path('user_edit', {'id': user.id}) }}">Modifier mon profil</a></div>
+        <div class="lien"><a href="{{ path('commande_index', {'id': user.id}) }}">Vos commandes</a></div>
+        <div class="lien"><a href="{{ path('commande_new', {'id': user.id}) }}">Créer une commande</a></div>
+        <div class="lien"><a href="{{ path('app_logout') }}">Déconnexion</a></div>
+    </div>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>
+        <a href="{{ path('restaurant_index') }}">Page restaurants</a>
+        <small>Sur cette page, vous pouvez afficher la liste des restaurants ainsi qu'afficher leurs détails, les modifier, les supprimer et en créer.</small>
+        </p>
+        {% if user.listeDeRestaurant.id is defined %}
+            <a href="{{ path('produit_new', {'id': user.listeDeRestaurant.id}) }}">Créer un produit dans votre restaurant (<i>{{ user.listeDeRestaurant.nom }}</i>)</a>
+        {% endif %}
+    {% endif %}
+<div class="center">
+{% endblock %}

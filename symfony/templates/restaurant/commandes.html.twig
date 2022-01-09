@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes - Restaurant{% endblock %}
+
+{% block body %}
+    <h1>Liste des commandes chez {{ restaurant.nom }}</h1>
+    {% for commande in restaurant.commandes %}
+    <p>
+        Commande n°<b>{{ commande.numero }}</b> - <b>{{ commande.prix }} €</b>
+        <br />
+        Client : <b>{{ commande.client.prenom }} {{ commande.client.nom }}</b>
+        <br />
+        <a href="{{ path('commande_show', {'id': commande.id}) }}">Afficher</a>
+    </p>
+    {% endfor %}
+
+    <a href="{{ path('restaurant_index') }}">Retour à liste des restaurants</a>
+
+    {{ include('restaurant/_delete_form.html.twig') }}
+{% endblock %}

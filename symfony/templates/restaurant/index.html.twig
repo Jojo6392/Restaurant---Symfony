@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block body %}
+<div class="center">
+    <h1>Restaurants</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Numéro de téléphone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for restaurant in restaurants %}
+            <tr>
+                <td>{{ restaurant.id }}</td>
+                <td>{{ restaurant.nom }}</td>
+                <td>{{ restaurant.adresse }}</td>
+                <td>{{ restaurant.tel }}</td>
+                <td>
+                    <a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Afficher</a>
+                    <a href="{{ path('restaurant_edit', {'id': restaurant.id}) }}">Modifier</a>
+                    {{ include('restaurant/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Pas de restaurant trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="buttons">
+        <div class="lien"><a href="{{ path('restaurant_new') }}">Créer un restaurant</a></div>
+        <div class="lien"><a href="{{ path('produit_index')}}">Liste des produits</a></div>
+        <div class="lien"><a href="{{ path('user_index', {'id': app.user.id}) }}">Retour au profil utilisateur</a></div>
+    </div>
+</div>
+{% endblock %}

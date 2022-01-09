@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon profil{% endblock %}
+
+{% block body %}
+<div class="center">
+<style>
+    input {
+        margin: 10px;
+    }
+</style>
+    <h1>Modifier mon profil</h1>
+
+    {{ include('user/_form.html.twig', {'button_label': 'Valider'}) }}
+
+    <div class="lien"><a href="{{ path('user_index', {'id': app.user.id}) }}">Mon profil</a></div>
+</div>
+{% endblock %}

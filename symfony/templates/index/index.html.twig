@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 0 auto; max-width: 1000px; width: 95%; text-align: center; margin-top: 200px;}
+</style>
+<div class="example-wrapper">
+    <h1> Bienvenue chez Jurassic Gestion Restaurant ! </h1>
+        Pour vous connecter <a href="{{ path('login') }}">ici</a><br />
+        Pour vous inscrire <a href="{{ path('app_register') }}">ici</a>
+        <div class="accueil-msg">
+            En espèrant que le site fonctionne...<br />
+            <img src="{{ asset('assets/no_way.gif') }}" />
+        </div>
+    {% if app.user %}
+        <div>Vous êtes bien connecté en tant que {{ app.user.prenom }} {{ app.user.nom }}.</div>
+    {% endif %}
+</div>
+{% endblock %}
