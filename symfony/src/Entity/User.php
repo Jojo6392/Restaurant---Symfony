@@ -55,6 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="responsables")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $listeDeRestaurant;
 

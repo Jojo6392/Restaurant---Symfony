@@ -24,7 +24,7 @@ class LigneDeCommande
 
     /**
      * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="lignesDeCommandes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $commande;
 

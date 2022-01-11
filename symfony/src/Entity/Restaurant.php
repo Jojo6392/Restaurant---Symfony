@@ -35,12 +35,12 @@ class Restaurant
     private $tel;
 
     /**
-     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="restaurant")
+     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="restaurant", cascade={"remove"})
      */
     private $produits;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="restaurant")
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="restaurant", cascade={"remove"})
      */
     private $commandes;
 

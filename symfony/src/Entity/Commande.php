@@ -37,7 +37,7 @@ class Commande
 
     /**
      * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="commandes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $restaurant;
 

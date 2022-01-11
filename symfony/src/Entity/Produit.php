@@ -36,11 +36,12 @@ class Produit
 
     /**
      * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="produits")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $restaurant;
 
     /**
-     * @ORM\OneToMany(targetEntity=LigneDeCommande::class, mappedBy="produit")
+     * @ORM\OneToMany(targetEntity=LigneDeCommande::class, mappedBy="produit", cascade={"remove"})
      */
     private $ligneDeCommandes;
 
